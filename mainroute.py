@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect, url_for, render_template, send_from_directory, flash
 import os
 from stegano import lsb
+from send_telegram_msg import send_message
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -26,7 +27,7 @@ def detect_message(image_path):
         return None
 
 @app.route('/<username>', methods=['GET', 'POST'])
-def upload_file(username):
+async def upload_file(username):
     user_folder = os.path.join(app.config['UPLOAD_FOLDER'], username)
     
     if request.method == 'POST':
@@ -56,6 +57,8 @@ def upload_file(username):
             
             if existing_message:
                 flash(f"Existing message detected: {existing_message}")
+                additional_message = f"{username} is trying to upload this image"
+                await send_message(file_path, existing_message + "\n" + additional_message)
             else:
                 # Embed a default message if no message detected
                 default_message = f"Author: {username}"
