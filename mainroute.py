@@ -2,6 +2,9 @@ from flask import Flask, request, redirect, url_for, render_template, send_from_
 import os
 from stegano import lsb
 from send_telegram_msg import send_message
+import cv2
+from scipy.fftpack import dct, idct
+import numpy as np
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -25,6 +28,90 @@ def detect_message(image_path):
     except Exception as e:
         print(f"Error detecting message: {str(e)}")
         return None
+# def embed_message(image_path, message):
+#     # Load the image
+#     image = cv2.imread(image_path)
+#     h, w, channels = image.shape
+    
+#     # Convert image to float32
+#     image = np.float32(image)
+    
+#     # Process each channel separately
+#     for channel in range(channels):
+#         # Apply DCT to the channel
+#         dct_channel = dct(dct(image[:,:,channel].T, norm='ortho').T, norm='ortho')
+        
+#         # Flatten the DCT coefficients
+#         dct_flat = dct_channel.flatten()
+        
+#         # Convert the message to binary representation
+#         data_bits = ''.join(format(byte, '08b') for byte in message.encode('utf-8'))
+        
+#         # Embed the data bits into the DCT coefficients
+#         for i, bit in enumerate(data_bits):
+#             if bit == '1':
+#                 dct_flat[i] = dct_flat[i] + 0.01  # Modify coefficient slightly to embed bit '1'
+#             else:
+#                 dct_flat[i] = dct_flat[i] - 0.01  # Modify coefficient slightly to embed bit '0'
+        
+#         # Reshape the modified coefficients back to the original shape
+#         dct_channel = dct_flat.reshape((h, w))
+        
+#         # Apply inverse DCT to get the modified channel
+#         idct_channel = idct(idct(dct_channel.T, norm='ortho').T, norm='ortho')
+        
+#         # Clip and convert the channel back to uint8
+#         idct_channel = np.uint8(np.clip(idct_channel, 0, 255))
+        
+#         # Update the image with the modified channel
+#         image[:,:,channel] = idct_channel
+    
+#     # Convert the entire image back to uint8
+#     image = np.uint8(np.clip(image, 0, 255))
+    
+#     # Save the modified image
+#     cv2.imwrite(image_path, image)
+
+# def detect_message(image_path, message_length):
+#     try:
+#         # Load the image
+#         image = cv2.imread(image_path)
+#         h, w, channels = image.shape
+        
+#         # Convert image to float32
+#         image = np.float32(image)
+        
+#         # Initialize an empty message
+#         extracted_message = ''
+        
+#         # Process each channel separately
+#         for channel in range(channels):
+#             # Apply DCT to the channel
+#             dct_channel = dct(dct(image[:,:,channel].T, norm='ortho').T, norm='ortho')
+            
+#             # Flatten the DCT coefficients
+#             dct_flat = dct_channel.flatten()
+            
+#             # Extract the data bits from the DCT coefficients
+#             extracted_bits = []
+#             for i in range(message_length * 8):  # 8 bits per byte
+#                 if dct_flat[i] > 0:
+#                     extracted_bits.append('1')
+#                 else:
+#                     extracted_bits.append('0')
+            
+#             # Convert the extracted bits back to bytes
+#             extracted_bytes = [int(''.join(extracted_bits[i:i+8]), 2) for i in range(0, len(extracted_bits), 8)]
+            
+#             # Convert bytes to string
+#             extracted_message += bytes(extracted_bytes).decode('utf-8')
+        
+#         return extracted_message
+    
+#     except Exception as e:
+#         print(f"Error detecting message: {str(e)}")
+#         return None
+    
 
 @app.route('/<username>', methods=['GET', 'POST'])
 async def upload_file(username):
