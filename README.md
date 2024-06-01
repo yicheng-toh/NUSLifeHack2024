@@ -44,7 +44,7 @@ Alice: ```http://127.0.0.1:5000/Alice```
 Trudy: ```http://127.0.0.1:5000/Trudy```
 
 #### Uploading of Original Images
-![Uploading of Original Images](./docs_pics/AliceDemo.png)
+![Uploading of Original Images](./docs_pics/AliceDemo.jpg)
 #### Uploading of Copyrighted Images from the same platform
 ![Uploading of Copyrighted Images from the same platform](./docs_pics/TrudyDemo.png)
 #### Example of telegram Images
