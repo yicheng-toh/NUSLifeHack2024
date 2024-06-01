@@ -9,6 +9,8 @@
 ## Introduction
 With social media, content is easily shared but also easily stolen. UNShare combats copyright infringement by embedding hidden data in images to identify and prevent unauthorised uploads. Admin will be notified by such infringmement via a telegram bot.
 
+This projects contains a prototype of our idea.
+
 ## Features
 - Images are checked for metadata contained in the images.
 - If no metadata of the defined type is in the image, then new metadata will be written on the image
