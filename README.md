@@ -10,23 +10,23 @@ With social media, content is easily shared but also easily stolen. UNShare comb
 
 ## Installation and Set Up
 1. Clone the repository
-'''
+```
 git clone https://github.com/yicheng-toh/NUSLifeHack2024.git
-'''
+```
 1. Install required files to run the program. (You may want to create a virtual env before doing so)
-'''
+```
 pip install -r requirements.txt
-'''
+```
 1. Create .env file that is not on github.
 These are the contents in .env file. Please replace the details as defiend by the angle brackets.
-'''
+```
 TELE_API_KEY = <telegram bot api key>
 ID1= [<telegram chatid1>,<telegram chatid2>]
-'''
+```
 1. After which, run the following command to start the Flask Program.
-'''
+```
 python mainroute.py
-'''
+```
 
 #Demo
 For the demo of the software, please proceed to the video link that will be updated when the video is ready.
