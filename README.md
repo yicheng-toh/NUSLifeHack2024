@@ -4,6 +4,7 @@
 - [Introduction](#introduction)
 - [Features](#features)
 - [Installation](#installation-and-set-up)
+- [Sample Screenshot of the App](#sample-screenshot-of-the-app)
 - [Demo](#demo)
 
 ## Introduction
@@ -35,6 +36,19 @@ ID1= [<telegram chatid1>,<telegram chatid2>]
 ```
 python mainroute.py
 ```
+## Sample Screenshot of the App
+
+Example routes:
+Alice: ```http://127.0.0.1:5000/Alice```
+Trudy: ```http://127.0.0.1:5000/Trudy```
+
+#### Uploading of Original Images
+![Uploading of Original Images](./docs_pics/AliceDemo.png)
+#### Uploading of Copyrighted Images from the same platform
+![Uploading of Copyrighted Images from the same platform](./docs_pics/TrudyDemo.png)
+#### Example of telegram Images
+![Example of telegram Images](./docs_pics/TelegramDemo.png)
+
 
 ## Demo
-For the demo of the software, please proceed to the video link that will be updated when the video is ready.
+For the demo of the software, please proceed to this [video link](https://youtu.be/CUzaZSwAA_I).
